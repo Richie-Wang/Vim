@@ -14,11 +14,16 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'a.vim'
 Plugin 'taglist.vim'
 Plugin 'cscope.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Syntastic'
-Plugin 'Auto-Pairs'
+Plugin 'SirVer/ultisnips'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,10 +56,11 @@ nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-" Direct cscope output to Quickfix 
+" Redirect cscope output to Quickfix
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
+" Auto-pairs plugin
+let g:AutoPairsFlyMode = 1          "enable fly mode
 
 " Others
 syntax on
