@@ -14,6 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'winmanager'
 Plugin 'a.vim'
 Plugin 'taglist.vim'
 Plugin 'cscope.vim'
@@ -22,8 +23,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/syntastic'
 Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
@@ -43,8 +44,9 @@ filetype plugin indent on    " required
 
 
 " Taglist plugin
+let Tlist_Auto_Open=1               "auto open tag list window
 let Tlist_Show_One_File=1           "only show tag of current file
-let Tlist_Exit_OnlyWindow=1         "exit Vim if tag list window is the only window
+let Tlist_Exit_OnlyWindow=1         "auto exit Vim if tag list window is the only window
 let Tlist_Use_Right_Window=1        "display in right
 let Tlist_File_Fold_Auto_Close=1    "auto folding
 
@@ -84,6 +86,12 @@ let g:UltiSnipsListSnippets="<s-tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-tab>"
 
+" NERDTree plugin
+" Audo open NERDTree when open Vim
+autocmd vimenter * NERDTree
+" Auto close Vim if NERDTree window is the only window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
 " Syntastic plugin
 "let g:syntastic_check_on_open=1
 let g:syntastic_cpp_include_dirs=['/usr/include/']
@@ -101,6 +109,9 @@ let g:syntastic_warning_symbol='⚠'
 let g:AutoPairsFlyMode = 1          "enable fly mode
 
 " Others
+" Auto move cursor to edit area
+wincmd w
+autocmd VimEnter * wincmd w
 syntax on
 set number                          "display line number
 set autoindent                      "auto indentation
