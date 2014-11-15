@@ -19,6 +19,7 @@ Plugin 'taglist.vim'
 Plugin 'cscope.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -47,7 +48,7 @@ let Tlist_Exit_OnlyWindow=1         "exit Vim if tag list window is the only win
 let Tlist_Use_Right_Window=1        "display in right
 let Tlist_File_Fold_Auto_Close=1    "auto folding
 
-"Cscope plugin
+" Cscope plugin
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -58,6 +59,43 @@ nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " Redirect cscope output to Quickfix
 set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+" YouCompleteMe plugin
+"let g:ycm_error_symbol='>>'
+"let g:ycm_warning_symbol='>*'
+" Define keys to avoid conflict with UltiSnips
+let g:ycm_key_list_select_completion=['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion=['<c-p>', '<Up>']
+" No need to confirm when load extra config file
+let g:ycm_confirm_extra_conf=0
+" Syntax identifiers completion
+let g:ycm_seed_identifiers_with_syntax=1
+" The fallback path to a config file which is used if no '.ycm_extra_conf.py' is found.
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+" The defult completion key is ALT + /
+let g:ycm_key_invoke_completion='<M-/>'
+" Open completion in comments
+let g:ycm_complete_in_comments=1
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" UltiSnips plugin
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-tab>"
+
+" Syntastic plugin
+"let g:syntastic_check_on_open=1
+let g:syntastic_cpp_include_dirs=['/usr/include/']
+let g:syntastic_cpp_remove_include_errors =1
+let g:syntastic_cpp_check_header=1
+"let g:syntastic_cpp_compiler='clang++'
+let g:syntastic_cpp_compiler_options='-std=c++11 -stdlib=libstdc++'
+" Set error or warning signs
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+" Whether to show balloons
+"let g:syntastic_enable_balloons=1"
 
 " Auto-pairs plugin
 let g:AutoPairsFlyMode = 1          "enable fly mode
